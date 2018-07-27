@@ -16,6 +16,8 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
+set ruler
+
 let need_to_install_plugins=0
 if empty(system("grep lazy_load ~/.vim/bundle/Vundle.vim/autoload/vundle.vim"))
   echoerr "Vundle plugins are not installed. Please run ~/.vim/bin/install"
@@ -37,7 +39,7 @@ else
 "  Plugin 'chriskempson/vim-tomorrow-theme'
 "  Plugin 'candycode.vim'
 "  Plugin 'Colour-Sampler-Pack'
-"  Plugin 'flazz/vim-colorschemes'
+  Plugin 'flazz/vim-colorschemes'
   Plugin 'phanviet/vim-monokai-pro'
 
 "
@@ -46,38 +48,38 @@ else
 "  " General Editing
 "  "
 "  Plugin 'tpope/vim-repeat'
-"  Plugin 'tpope/vim-surround'
-"  Plugin 'scrooloose/nerdcommenter'
+  Plugin 'tpope/vim-surround'
+  Plugin 'scrooloose/nerdcommenter'
 "  Plugin 'kana/vim-textobj-user'
 "  Plugin 'Julian/vim-textobj-variable-segment'
 "  Plugin 'kana/vim-textobj-line'
 "  Plugin 'thinca/vim-textobj-between'
-"  Plugin 'tpope/vim-unimpaired'
-"  Plugin 'sjl/gundo.vim'
-"  Plugin 'godlygeek/tabular'
+  Plugin 'tpope/vim-unimpaired'
+  Plugin 'sjl/gundo.vim'
+  Plugin 'godlygeek/tabular'
 "  Plugin 'scrooloose/syntastic'
-  Plugin 'vim-airline/vim-airline'
-  Plugin 'vim-airline/vim-airline-themes'
+"  Plugin 'vim-airline/vim-airline'
+"  Plugin 'vim-airline/vim-airline-themes'
   Plugin 'ervandew/supertab'
 "  Plugin 'nertzy/j-split'
 "  Plugin 'matt-royal/diffthese'
 "  Plugin 'camelcasemotion'
 "  Plugin 'nertzy/edit-plus'
 "  Plugin 'brysgo/quickfixfix'
-"  Plugin 'Lokaltog/vim-easymotion'
-"  Plugin 'regreplop.vim'
+  Plugin 'Lokaltog/vim-easymotion'
+  Plugin 'regreplop.vim'
 "  Plugin 'Peeja/insert_mode_background_color'
 "  Plugin 'vim-scripts/L9'
 "  Plugin 'Peeja/vim-cdo'
-"  Plugin 'MarcWeber/vim-addon-mw-utils'
+  Plugin 'MarcWeber/vim-addon-mw-utils'
 "  Plugin 'tomtom/tlib_vim'
 "  Plugin 'garbas/vim-snipmate'
 "  Plugin 'honza/vim-snippets'
-"  Plugin 'YankRing.vim'
+  Plugin 'YankRing.vim'
 "  Plugin 'terryma/vim-multiple-cursors'
 "  Plugin 'editorconfig/editorconfig-vim'
 "  Plugin 'tpope/vim-projectionist'
-"  Plugin 'kien/rainbow_parentheses.vim'
+  Plugin 'kien/rainbow_parentheses.vim'
 "  Plugin 'sbdchd/neoformat'
 "
 "  "
@@ -91,13 +93,13 @@ else
   Plugin 'epmatsw/ag.vim'
 "  Plugin 'tpope/vim-abolish'
 "  Plugin 'henrik/vim-qargs'
-"  Plugin 'ctrlpvim/ctrlp.vim'
+  Plugin 'ctrlpvim/ctrlp.vim'
 "
 "  "
 "  " Navigation
 "  "
   Plugin 'scrooloose/nerdtree'
-"  Plugin 'majutsushi/tagbar'
+  Plugin 'majutsushi/tagbar'
 "
 "  "
 "  " Languages
@@ -133,9 +135,10 @@ else
 "  Plugin 'mdelillo/vim-simple-bdd'
 
 
-  Plugin 'w0rp/ale'
+"  Plugin 'w0rp/ale'
 
-  
+  Plugin 'nbouscal/vim-stylish-haskell'
+
   call vundle#end()
 
   filetype plugin indent on
@@ -154,7 +157,63 @@ endif
 
 
 colorscheme monokai_pro
+" colorscheme morning 
 
-let g:airline#extensions#ale#enabled = 1
-autocmd FileType haskell nnoremap <buffer> <leader>? :call ale#cursor#ShowCursorDetail()<cr>
+" let g:airline#extensions#ale#enabled = 1
+" autocmd FileType haskell nnoremap <buffer> <leader>? :call ale#cursor#ShowCursorDetail()<cr>
 
+let g:rbpt_max = 16
+au VimEnter * RainbowParenthesesToggle
+
+map t <C-k>
+
+" Tags
+"
+map <leader>tt :TagbarToggle<CR>
+
+set tags=tags;/
+set cst
+set csverb
+
+let g:tagbar_type_haskell = {
+    \ 'ctagsbin'    : 'hasktags',
+    \ 'ctagsargs'   : '-x -c -o-',
+    \ 'kinds'       : [
+        \  'm:modules:0:1',
+        \  'd:data:0:1',
+        \  'd_gadt:data gadt:0:1',
+        \  'nt:newtype:0:1',
+        \  'c:classes:0:1',
+        \  'i:instances:0:1',
+        \  'cons:constructors:0:1',
+        \  'c_gadt:constructor gadt:0:1',
+        \  'c_a:constructor accessors:1:1',
+        \  't:type names:0:1',
+        \  'pt:pattern types:0:1',
+        \  'pi:pattern implementations:0:1',
+        \  'ft:function types:0:1',
+        \  'fi:function implementations:0:1',
+        \  'o:others:0:1'
+    \ ],
+    \ 'sro'          : '.',
+    \ 'kind2scope'   : {
+        \ 'm'        : 'module',
+        \ 'd'        : 'data',
+        \ 'd_gadt'   : 'd_gadt',
+        \ 'c_gadt'   : 'c_gadt',
+        \ 'nt'       : 'newtype',
+        \ 'cons'     : 'cons',
+        \ 'c_a'      : 'accessor',
+        \ 'c'        : 'class',
+        \ 'i'        : 'instance'
+    \ },
+    \ 'scope2kind'   : {
+        \ 'module'   : 'm',
+        \ 'data'     : 'd',
+        \ 'newtype'  : 'nt',
+        \ 'cons'     : 'c_a',
+        \ 'd_gadt'   : 'c_gadt',
+        \ 'class'    : 'ft',
+        \ 'instance' : 'ft'
+    \ }
+\ }
