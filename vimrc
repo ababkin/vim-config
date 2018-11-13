@@ -56,17 +56,17 @@ else
 "  Plugin 'thinca/vim-textobj-between'
   Plugin 'tpope/vim-unimpaired'
   Plugin 'sjl/gundo.vim'
-  Plugin 'godlygeek/tabular'
+  " Plugin 'godlygeek/tabular'
 "  Plugin 'scrooloose/syntastic'
 "  Plugin 'vim-airline/vim-airline'
 "  Plugin 'vim-airline/vim-airline-themes'
-  Plugin 'ervandew/supertab'
+  " Plugin 'ervandew/supertab'
 "  Plugin 'nertzy/j-split'
 "  Plugin 'matt-royal/diffthese'
 "  Plugin 'camelcasemotion'
 "  Plugin 'nertzy/edit-plus'
 "  Plugin 'brysgo/quickfixfix'
-  Plugin 'Lokaltog/vim-easymotion'
+  " Plugin 'Lokaltog/vim-easymotion'
   Plugin 'regreplop.vim'
 "  Plugin 'Peeja/insert_mode_background_color'
 "  Plugin 'vim-scripts/L9'
@@ -165,8 +165,6 @@ colorscheme monokai_pro
 let g:rbpt_max = 16
 au VimEnter * RainbowParenthesesToggle
 
-map t <C-k>
-
 " Tags
 "
 map <leader>tt :TagbarToggle<CR>
@@ -217,3 +215,25 @@ let g:tagbar_type_haskell = {
         \ 'instance' : 'ft'
     \ }
 \ }
+
+nnoremap k d
+nnoremap K D
+
+nnoremap h j
+" nnoremap H J
+nnoremap d h
+" nnoremap D H
+nnoremap t k
+" nnoremap T K
+nnoremap n l
+" nnoremap N L
+
+nnoremap <C-h> <C-j>
+nnoremap <C-d> <C-h>
+nnoremap <C-t> <C-k>
+nnoremap <C-n> <C-l>
+
+let NERDTreeMapOpenInTab='\t'
+
+
+
