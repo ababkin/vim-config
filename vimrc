@@ -18,6 +18,7 @@ filetype off                   " required!
 
 set ruler
 
+
 let need_to_install_plugins=0
 if empty(system("grep lazy_load ~/.vim/bundle/Vundle.vim/autoload/vundle.vim"))
   echoerr "Vundle plugins are not installed. Please run ~/.vim/bin/install"
@@ -60,7 +61,7 @@ else
 "  Plugin 'scrooloose/syntastic'
 "  Plugin 'vim-airline/vim-airline'
 "  Plugin 'vim-airline/vim-airline-themes'
-  " Plugin 'ervandew/supertab'
+  Plugin 'ervandew/supertab'
 "  Plugin 'nertzy/j-split'
 "  Plugin 'matt-royal/diffthese'
 "  Plugin 'camelcasemotion'
@@ -169,6 +170,10 @@ au VimEnter * RainbowParenthesesToggle
 "
 map <leader>tt :TagbarToggle<CR>
 
+" nmap t <Plug>ReplaceMotion
+" nmap t <Plug>ReplaceLine
+" vmap t <Plug>ReplaceVisual
+
 set tags=tags;/
 set cst
 set csverb
@@ -216,24 +221,22 @@ let g:tagbar_type_haskell = {
     \ }
 \ }
 
-nnoremap k d
-nnoremap K D
 
-nnoremap h j
-" nnoremap H J
-nnoremap d h
-" nnoremap D H
-nnoremap t k
-" nnoremap T K
-nnoremap n l
-" nnoremap N L
+" remap repreplop
+nmap t <C-k>
 
-nnoremap <C-h> <C-j>
-nnoremap <C-d> <C-h>
-nnoremap <C-t> <C-k>
-nnoremap <C-n> <C-l>
+" SPLITS
+"
+" move between splits
+" nmap <C-j> <C-w><C-j>
+" nmap <C-k> <C-w><C-k>
+" nmap <C-l> <C-w><C-l>
+" nmap <C-h> <C-w><C-h>
 
-let NERDTreeMapOpenInTab='\t'
+nnoremap <c-t> <c-w><
+nnoremap <c-n> <c-w>>
 
+set splitbelow
+set splitright
 
 
